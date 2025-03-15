@@ -1,163 +1,108 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  background-color: #239ac2;
 }
 
 .birthdayCard {
+  width: 300px;
+  height: 500px;
+  background: linear-gradient(to bottom, #ff7f50, #ff6347);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
   position: relative;
-  width: 250px;
-  height: 350px;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform: perspective(2500px);
-  transition: 1s;
-}
-
-.birthdayCard:hover {
-  transform: perspective(2500px) rotate(5deg);
-  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
-    0 10px 100px rgba(0, 0, 0, 0.5);
-}
-
-.birthdayCard:hover .cardFront {
-  transform: rotateY(-160deg);
-}
-
-.birthdayCard:hover .happy {
-  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
 }
 
 .cardFront {
-  position: relative;
-  background-color: #fff;
-  width: 250px;
-  height: 350px;
-  overflow: hidden;
-  transform-origin: left;
-  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2),
-    30px 0 50px rgba(0, 0, 0, 0.4);
-  transition: 0.6s;
+  padding: 20px;
+  text-align: center;
 }
 
 .happy {
-  font-family: Tahoma, sans-serif;
-  text-align: center;
-  margin: 30px;
-  background-image: linear-gradient(120deg, #ffd856 0%, #f98c6e 100%);
-  transition: 0.1s;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .balloons {
-  position: absolute;
+  display: flex;
+  justify-content: space-around;
 }
 
-.balloon-1,
-.balloon-2,
-.balloon-3,
-.balloon-4 {
-  position: absolute;
-  width: 85px;
-  height: 95px;
+.balloon-1, .balloon-2, .balloon-3, .balloon-4 {
+  width: 40px;
+  height: 60px;
+  background-color: #fff;
   border-radius: 50%;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
 }
 
 .balloon-1 {
-  background-color: rgba(255, 40, 90, 0.7);
-  left: -10px;
-  top: 50px;
+  background-color: #ff1493;
+  animation-delay: 0s;
 }
 
 .balloon-2 {
-  background-color: rgba(9, 215, 160, 0.7);
-  left: 50px;
-  top: 20px;
+  background-color: #32cd32;
+  animation-delay: 0.5s;
 }
 
 .balloon-3 {
-  background-color: rgba(255, 186, 26, 0.7);
-  left: 110px;
-  top: 50px;
+  background-color: #00bfff;
+  animation-delay: 1s;
 }
 
 .balloon-4 {
-  background-color: rgba(12, 122, 159, 0.7);
-  left: 170px;
-  top: 50px;
+  background-color: #ff8c00;
+  animation-delay: 1.5s;
 }
 
-.balloon-1::before,
-.balloon-2::before,
-.balloon-3::before,
-.balloon-4::before {
-  content: "";
-  position: absolute;
-  width: 1px;
-  height: 155px;
-  background-color: #ffc848;
-  top: 95px;
-  left: 43px;
-}
-
-.balloon-1::after,
-.balloon-2::after,
-.balloon-3::after,
-.balloon-4::after {
-  content: "";
-  position: absolute;
-  border-right: 7px solid transparent;
-  border-left: 7px solid transparent;
-  top: 94px;
-  left: 37px;
-}
-
-.balloon-1::after {
-  border-bottom: 10px solid #ff3e6b;
-}
-
-.balloon-2::after {
-  border-bottom: 10px solid #04b183;
-}
-
-.balloon-3::after {
-  border-bottom: 10px solid #ffc94c;
-}
-
-.balloon-4::after {
-  border-bottom: 10px solid #13a9bd;
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .cardInside {
-  position: absolute;
   background-color: #fff;
-  width: 250px;
-  height: 350px;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  display: none; /* Initially hidden */
 }
 
-p {
-  font-family: "Brush Script MT", cursive;
-  margin: 40px;
-  color: #333;
+.cardInside p {
+  font-size: 16px;
+  margin: 10px 0;
 }
 
 .name {
-  position: absolute;
-  left: 150px;
-  top: 200px;
-  color: #333;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
-.back {
-  font-family: Tahoma, sans-serif;
-  color: #333;
-  text-align: center;
-  margin: 30px;
-  outline-color: #333;
-  outline-style: dotted;
+.cardFront:hover + .cardInside {
+  display: block;
 }
