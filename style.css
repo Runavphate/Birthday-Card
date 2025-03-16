@@ -5,7 +5,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f9f9f9;
+  background-color: #AA336A;
   font-family: "Arial", sans-serif;
   overflow: hidden; /* Prevent scrolling */
 }
@@ -50,7 +50,7 @@ body {
   height: 100%;
   backface-visibility: hidden;
   border-radius: 10px;
-  background-color: #fff; /* White */
+  background-color: #f9f9f9; /* White */
   transform: rotateY(180deg);
   padding: 20px;
   box-sizing: border-box;
