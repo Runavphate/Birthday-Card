@@ -5,18 +5,18 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #ffb6c1;
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
   font-family: "Arial", sans-serif;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
 }
 
 /* Card Container */
 .card-container {
   position: relative;
   width: 90%;
-  max-width: 300px;
-  height: 400px;
-  perspective: 1000px; /* For 3D effect */
+  max-width: 320px;
+  height: 450px;
+  perspective: 1200px;
 }
 
 /* Card */
@@ -25,8 +25,9 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 1.5s ease-in-out;
+  transition: transform 1s ease-in-out;
   cursor: pointer;
+  transform-origin: center;
 }
 
 /* Front of the Card */
@@ -35,12 +36,13 @@ body {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 10px;
-  background-color: #ffcc00; /* Bright yellow */
+  border-radius: 12px;
+  background: radial-gradient(circle, #ffcc00, #ff8c00);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Inside of the Card */
@@ -49,78 +51,87 @@ body {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 10px;
-  background-color: #f9f9f9; /* White */
+  border-radius: 12px;
+  background: #fff;
   transform: rotateY(180deg);
-  padding: 20px;
+  padding: 24px;
   box-sizing: border-box;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 /* Text Styles */
 .happy, .back {
-  font-size: 24px;
+  font-size: 26px;
   color: #333;
-  text-align: center;
+  font-weight: bold;
 }
 
 p {
-  font-size: 16px;
-  color: #555;
-  text-align: center;
-  line-height: 1.5;
-}
-
-.name {
   font-size: 18px;
-  color: #333;
-  text-align: right;
-  margin-top: 20px;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 12px;
 }
 
 /* Balloons */
 .balloon {
   position: absolute;
-  width: 40px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #ff6666; /* Red */
-  bottom: -100px; /* Start below the screen */
+  width: 60px;
+  height: 80px;
+  background-color: red;
+  border-radius: 50% 50% 45% 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset -5px -5px rgba(0, 0, 0, 0.2);
+  bottom: -120px;
   animation: floatUp 6s infinite ease-in;
 }
 
-.balloon::before {
+.balloon::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  left: 50%;
   width: 2px;
-  height: 20px;
-  background-color: #333;
-  transform: translateX(-50%);
+  height: 30px;
+  background-color: #555;
+  bottom: -30px;
 }
 
-.balloon-1 { left: 10%; animation-delay: 0s; }
-.balloon-2 { left: 30%; animation-delay: 1s; }
-.balloon-3 { left: 50%; animation-delay: 2s; }
-.balloon-4 { left: 70%; animation-delay: 3s; }
+.balloon-1 { left: 15%; background: #ff6666; animation-delay: 0s; }
+.balloon-2 { left: 35%; background: #66ccff; animation-delay: 1s; }
+.balloon-3 { left: 55%; background: #ffcc00; animation-delay: 2s; }
+.balloon-4 { left: 75%; background: #66ff99; animation-delay: 3s; }
 
-/* Balloon Floating Animation */
 @keyframes floatUp {
-  0% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
 }
 
-/* Card Opening Animation */
+/* Party Poppers */
+.party-popper {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: gold;
+  border-radius: 50%;
+  animation: pop 1s ease-out infinite;
+}
+
+.party-popper-1 { left: 10%; top: 10%; animation-delay: 0.2s; }
+.party-popper-2 { left: 30%; top: 15%; animation-delay: 0.4s; }
+.party-popper-3 { left: 50%; top: 5%; animation-delay: 0.6s; }
+.party-popper-4 { left: 70%; top: 20%; animation-delay: 0.8s; }
+.party-popper-5 { left: 90%; top: 10%; animation-delay: 1s; }
+
+@keyframes pop {
+  0% { transform: scale(0); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Card Open Animation */
 .card.open {
   transform: rotateY(180deg);
 }
